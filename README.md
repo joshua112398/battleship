@@ -1,1 +1,8 @@
-# battleship
+# Battleship
+This is a replica of the classic Battleship game, now playable on your browser. The app consists of mostly the game itself along with any logic associated with it. There is a computer AI that users can play against. 
+
+# Implementation
+It uses Vanilla JavaScript with test-driven development in mind to test that the various modules and functionalities work as they should. In addition, it uses ES6 modules to follow OOP principles.
+
+# Challenges
+None yet.
