@@ -20,12 +20,12 @@ it('Gameboard is initialized correctly', () => {
 
 it('Can place ship of varying length/direction anywhere', () => {
   const resultBoard = [
-    ['water', 'ship', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
-    ['water', 'ship', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
+    ['water', '0', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
+    ['water', '1', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
-    ['water', 'water', 'ship', 'ship', 'ship', 'water', 'water', 'water', 'water', 'water'],
+    ['water', 'water', '0', '1', '2', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
@@ -47,6 +47,17 @@ it("Can't place a ship that will overlap with an existing ship", () => {
 });
 
 it('A received attack hits the correct ship successfully', () => {
-  expect(testBoard.placeShip(3, 'vertical', 5, 0)).toBe("Can't Overlap");
-  expect(testBoard.placeShip(2, 'horizontal', 1, 1)).toBe("Can't Overlap");
+  testBoard.receiveAttack(1, 1);
+  testBoard.receiveAttack(5, 4);
+  expect(testBoard.getShips()[1].getStatus()).toEqual(['intact', 'hit']);
+  expect(testBoard.getShips()[0].getStatus()).toEqual(['intact', 'intact', 'hit']);
+});
+
+it("Can't hit the same space more than once", () => {
+  testBoard.receiveAttack(1, 2);
+  expect(testBoard.receiveAttack(1, 2)).toBe('This space has already been hit.');
+});
+
+it('Indicates if a shot was a miss', () => {
+  expect(testBoard.receiveAttack(2, 1)).toBe('Missed!');
 });

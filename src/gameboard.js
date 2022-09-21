@@ -19,16 +19,20 @@ const Gameboard = function Gameboard() {
     return board;
   };
 
+  const getShips = function getShips() {
+    return ships;
+  };
+
   const placeVerticalShip = function placeVerticalShip(length, column, row, shipIndex) {
     for (let i = 0; i < length; i += 1) {
-      board[column][row + i] = 'ship';
+      board[column][row + i] = `${i}`;
       shipBoard[column][row + i] = shipIndex;
     }
   };
 
   const placeHorizontalShip = function placeHorizontalShip(length, column, row, shipIndex) {
     for (let i = 0; i < length; i += 1) {
-      board[column + i][row] = 'ship';
+      board[column + i][row] = `${i}`;
       shipBoard[column + i][row] = shipIndex;
     }
   };
@@ -46,13 +50,13 @@ const Gameboard = function Gameboard() {
 
     if (direction === 'vertical') {
       for (let i = 0; i < length; i += 1) {
-        if (board[column][row + i] === 'ship') {
+        if (board[column][row + i] !== 'water') {
           overlap = true;
         }
       }
     } else {
       for (let i = 0; i < length; i += 1) {
-        if (board[column + i][row] === 'ship') {
+        if (board[column + i][row] !== 'water') {
           overlap = true;
         }
       }
@@ -86,7 +90,34 @@ const Gameboard = function Gameboard() {
     return 'Valid';
   };
 
-  return { getBoard, placeShip };
+  const receiveAttack = function receiveAttack(column, row) {
+    const shipCell = board[column][row];
+    const shipIndex = shipBoard[column][row];
+    if (shipCell === 'water') {
+      board[column][row] = 'hit';
+      return 'Missed!';
+    }
+    if (shipCell === 'hit') {
+      return 'This space has already been hit.';
+    }
+    ships[shipIndex].hit(shipCell);
+    board[column][row] = 'hit';
+    return 'Hit!';
+  };
+
+  const areAllShipsSunk = function areAllShipsSunk() {
+    let allSunk = true;
+    ships.forEach((ship) => {
+      if (ship.isSunk() === false) {
+        allSunk = false;
+      }
+    });
+    return allSunk;
+  };
+
+  return {
+    getBoard, getShips, placeShip, receiveAttack, areAllShipsSunk,
+  };
 };
 
 export default Gameboard;
