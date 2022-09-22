@@ -61,3 +61,16 @@ it("Can't hit the same space more than once", () => {
 it('Indicates if a shot was a miss', () => {
   expect(testBoard.receiveAttack(2, 1)).toBe('Missed!');
 });
+
+it('Says when all ships on the board have been sunk', () => {
+  const testBoard1 = Gameboard();
+  testBoard1.placeShip(3, 'vertical', 1, 1);
+  testBoard1.placeShip(2, 'horizontal', 5, 5);
+  testBoard1.receiveAttack(1, 1);
+  testBoard1.receiveAttack(1, 2);
+  expect(testBoard1.areAllShipsSunk()).toBe(false);
+  testBoard1.receiveAttack(1, 3);
+  testBoard1.receiveAttack(5, 5);
+  testBoard1.receiveAttack(6, 5);
+  expect(testBoard1.areAllShipsSunk()).toBe(true);
+});
