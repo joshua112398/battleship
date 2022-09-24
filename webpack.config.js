@@ -5,14 +5,23 @@ const path = require('path');
   mode: 'development',
    entry: {
      index: './src/index.js',
-     print: './src/print.js',
    },
    devtool: 'inline-source-map',
    devServer: {
      static: './dist',
    },
+   module: {
+     rules: [
+       {
+         test: /\.css$/i,
+         use: ['style-loader', 'css-loader'],
+       },
+     ],
+   },
    plugins: [
      new HtmlWebpackPlugin({
+      inject: false,
+      template: './dist/index.html',
       title: 'Output Management',
       title: 'Development',
      }),
