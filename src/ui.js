@@ -29,7 +29,8 @@ const UI = function UI() {
         if (clickable === true) {
           td.classList.add('clickable');
           td.addEventListener('click', () => {
-            player.attack(opponent, k, j);
+            opponent.attack(player, k, j);
+            reloadBoard(player, opponent, clickable);
           });
         }
         tr.appendChild(td);
@@ -41,9 +42,10 @@ const UI = function UI() {
     boardDOM.appendChild(table);
   };
 
-  const reloadBoard = function reloadBoard(boardDOM, player, opponent, clickable) {
-    boardDOM.removeChild();
-    loadBoard(boardDOM, player, opponent, clickable);
+  const reloadBoard = function reloadBoard(player, opponent, clickable) {
+    const boardDOM = document.querySelector(`#${player.getName()}>.board`);
+    boardDOM.removeChild(boardDOM.firstElementChild);
+    loadBoard(player, opponent, clickable);
   };
 
   return { loadBoard };

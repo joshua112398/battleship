@@ -5,4 +5,4 @@ This is a replica of the classic Battleship game, now playable on your browser. 
 It uses Vanilla JavaScript with test-driven development in mind to test that the various modules and functionalities work as they should. In addition, it uses ES6 modules to follow OOP principles.
 
 # Challenges
-None yet.
+Getting confused with firstChild and firstElementChild again when deleting children of a parent node.

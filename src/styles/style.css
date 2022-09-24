@@ -11,3 +11,7 @@ td {
 td.hit {
   background-color: rgb(231, 62, 141);
 }
+
+td.hit:hover {
+  background-color: rgb(231, 62, 141);
+}
