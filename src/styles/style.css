@@ -15,3 +15,7 @@ td.hit {
 td.hit:hover {
   background-color: rgb(231, 62, 141);
 }
+
+td.miss, td.miss:hover {
+  background-color: rgb(0, 153, 255);
+}

@@ -1,9 +1,9 @@
 import Gameboard from './gameboard';
-import UI from './ui';
 
-const Player = function Player(name) {
+const Player = function Player(name, turn) {
   const board = Gameboard();
   const playerName = name;
+  let activeTurn = turn;
 
   // List of spaces attacked by AI player so that AI doesn't attack the same
   // space twice
@@ -22,8 +22,12 @@ const Player = function Player(name) {
     return board;
   };
 
+  const toggleActiveTurn = function toggleActiveTurn() {
+    activeTurn = !activeTurn;
+  };
+
   const attack = function attack(player, column, row) {
-    player.getGameboard().receiveAttack(column, row);
+    return player.getGameboard().receiveAttack(column, row);
   };
 
   const randomAttack = function randomAttack(player) {
@@ -35,7 +39,7 @@ const Player = function Player(name) {
     }
   };
 
-  return { getGameboard, getName, attack, randomAttack, moveset };
+  return { getGameboard, toggleActiveTurn, getName, attack, randomAttack, moveset };
 };
 
 export default Player;

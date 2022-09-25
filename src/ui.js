@@ -1,5 +1,5 @@
 const UI = function UI() {
-  const loadBoard = function loadBoard(player, opponent, clickable) {
+  const loadBoard = function loadBoard(player, opponent, clickable, checkWinner) {
     const gameBoard = player.getGameboard().getBoard();
     const boardDOM = document.querySelector(`#${player.getName()}>.board`);
     const table = document.createElement('table');
@@ -25,12 +25,14 @@ const UI = function UI() {
         const td = document.createElement('td');
         if (gameBoard[k][j] === 'hit') {
           td.classList.add('hit');
+        } else if (gameBoard[k][j] === 'miss') {
+          td.classList.add('miss');
         }
-        if (clickable === true) {
+        if (clickable === true && gameBoard[k][j] !== 'hit' && gameBoard[k][j] !== 'miss') {
           td.classList.add('clickable');
           td.addEventListener('click', () => {
-            opponent.attack(player, k, j);
-            reloadBoard(player, opponent, clickable);
+            // eslint-disable-next-line no-use-before-define
+            attackReload(player, opponent, k, j, clickable, checkWinner);
           });
         }
         tr.appendChild(td);
@@ -42,10 +44,19 @@ const UI = function UI() {
     boardDOM.appendChild(table);
   };
 
-  const reloadBoard = function reloadBoard(player, opponent, clickable) {
+  const reloadBoard = function reloadBoard(player, opponent, clickable, checkWinner) {
     const boardDOM = document.querySelector(`#${player.getName()}>.board`);
     boardDOM.removeChild(boardDOM.firstElementChild);
-    loadBoard(player, opponent, clickable);
+    loadBoard(player, opponent, clickable, checkWinner);
+  };
+
+  const attackReload = function attackReload(player, opponent, col, row, clickable, checkWinner) {
+    opponent.attack(player, col, row);
+    checkWinner();
+    player.randomAttack(opponent);
+    checkWinner();
+    reloadBoard(player, opponent, clickable, checkWinner);
+    reloadBoard(opponent, player, !clickable, checkWinner);
   };
 
   return { loadBoard };

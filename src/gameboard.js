@@ -95,10 +95,10 @@ const Gameboard = function Gameboard() {
     const shipCell = board[column][row];
     const shipIndex = shipBoard[column][row];
     if (shipCell === 'water') {
-      board[column][row] = 'hit';
+      board[column][row] = 'miss';
       return 'Missed!';
     }
-    if (shipCell === 'hit') {
+    if (shipCell === 'hit' || shipCell === 'miss') {
       return 'This space has already been hit.';
     }
     ships[shipIndex].hit(shipCell);
