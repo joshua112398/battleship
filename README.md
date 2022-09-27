@@ -6,3 +6,5 @@ It uses Vanilla JavaScript with test-driven development in mind to test that the
 
 # Challenges
 Getting confused with firstChild and firstElementChild again when deleting children of a parent node.
+
+I still wasn't sure of when to use mocking for creating unit tests, since a lot of the basic functionality of the app didn't really seem to require mocking at all. 

@@ -59,7 +59,18 @@ const UI = function UI() {
     reloadBoard(opponent, player, !clickable, checkWinner);
   };
 
-  return { loadBoard };
+  const showWinner = function showWinner(message) {
+    const modal = document.querySelector('.modal');
+    const button = modal.querySelector('button');
+    button.addEventListener('click', () => {
+      window.location.reload();
+    });
+    const modalMessage = modal.querySelector('h1');
+    modalMessage.textContent = message;
+    modal.classList.remove('hidden');
+  };
+
+  return { loadBoard, showWinner };
 };
 
 export default UI;

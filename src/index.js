@@ -20,9 +20,11 @@ const Game = (function Game() {
   const checkWinner = function checkWinner() {
     console.log('Checking for winner...');
     if (playerOne.getGameboard().areAllShipsSunk() === true) {
-      console.log('Player 1 wins');
-    } else if (playerTwo.getGameboard().areAllShipsSunk() === true) {
       console.log('Player 2 wins');
+      gameUI.showWinner('You lost...');
+    } else if (playerTwo.getGameboard().areAllShipsSunk() === true) {
+      console.log('Player 1 wins');
+      gameUI.showWinner('You won!');
     }
   };
 
