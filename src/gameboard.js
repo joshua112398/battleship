@@ -1,5 +1,4 @@
 import Ship from './ship';
-import UI from './ui';
 
 const Gameboard = function Gameboard() {
   const board = [];
