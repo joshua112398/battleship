@@ -6,11 +6,21 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
 }
 
-header {
+header, footer {
   display: flex;
   justify-content: center;
+  background-color: rgb(211, 105, 155);
+}
+
+footer {
+  padding: 20px;
+}
+
+header h1, footer p {
+  color: white;
 }
 
 td {
@@ -38,6 +48,7 @@ td.miss, td.miss:hover {
 th {
   text-align: center;
   vertical-align: middle;
+  padding: 4px;
 }
 
 .modal {
@@ -71,12 +82,14 @@ th {
 }
 
 main {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 50px;
-  padding: 50px;
+  padding: 20px;
 }
 
 main div {
