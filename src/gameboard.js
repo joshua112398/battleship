@@ -45,6 +45,7 @@ const Gameboard = function Gameboard() {
     return false;
   };
 
+  // Checks if a ship to be placed is going to overlap with another ship
   const isOverlapping = function isOverlapping(length, direction, column, row) {
     let overlap = false;
 
@@ -70,6 +71,9 @@ const Gameboard = function Gameboard() {
     const shipIndex = ships.length;
     ships.push(ship);
 
+    // Depending on orientation of ship, checks if all or part of it will be located
+    // outside the grid. If so, return an error message. Else, place the ship there.
+    // It checks that the ship is within bounds first before checking for overlap.
     if (direction === 'vertical') {
       if (isWithinBounds(length, row) === false) {
         return 'Invalid Position';
@@ -93,13 +97,16 @@ const Gameboard = function Gameboard() {
   const receiveAttack = function receiveAttack(column, row) {
     const shipCell = board[column][row];
     const shipIndex = shipBoard[column][row];
+    // If cell is water, indicate a miss
     if (shipCell === 'water') {
       board[column][row] = 'miss';
       return 'Missed!';
     }
+    // If cell was already attacked before, return warning message
     if (shipCell === 'hit' || shipCell === 'miss') {
       return 'This space has already been hit.';
     }
+    // Else, indicate a hit
     ships[shipIndex].hit(shipCell);
     board[column][row] = 'hit';
     return 'Hit!';

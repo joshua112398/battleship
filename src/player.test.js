@@ -5,7 +5,7 @@ it("A player can attack another player's gameboard", () => {
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
-    ['water', 'water', 'water', 'hit', 'water', 'water', 'water', 'water', 'water', 'water'],
+    ['water', 'water', 'water', 'miss', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
     ['water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water', 'water'],
@@ -22,16 +22,16 @@ it("A player can attack another player's gameboard", () => {
 
 it("AI can't initiate an attack on the same spot more than once", () => {
   const resultBoard = [
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
-    ['hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
+    ['miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss', 'miss'],
   ];
   const playerOne = Player();
   const playerTwo = Player();
